@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digitize</title>
+
+    <link rel="stylesheet" href="css/bootstrap-4.0.0-beta-2.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/dapp.css">
+
+    <!-- The most recent version  -->
+    <script src="https://unpkg.com/uport-connect/dist/uport-connect.js"></script>
+
+    <script src="js/lib/jquery-3.2.1.min.js"></script>
+    <script src="js/lib/popper-1.12.3.min.js"></script>
+    <script src="js/lib/bootstrap-4.0.0-beta-2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script src="js/lib/moment-2.19.2.min.js"></script>
+    <script src="js/lib/moment-timezone-0.5.14.min.js "></script>
+    <script src="js/lib/truffle-contract-3.0.1.js"></script>
+
+    <script type="text/javascript" src="js/lib/jsqrcode-combined.min.js"></script>
+    <script type="text/javascript" src="js/lib/html5-qrcode.min.js"></script>
+
+    <script src="js/dapp.js"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark navbar-expand-md mb-4 bg-dark justify-content-center">
+        <a href="/" class="navbar-brand d-flex w-50 mr-auto">Digitize Coin</a>
+            <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+                <li class="nav-brand">
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="reader" class="hidden" style="width:300px;height:250px"></div>
+
+    <div id="dapp" class="container">
+        
+        <div class="container">
+            <div class="row">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active bg-primary text-white border-primary"
+                           id="digitize-tab" 
+                           data-toggle="tab"
+                           href="#digitize"
+                           role="tab"
+                           aria-controls="digitize"
+                           aria-selected="true">Digitize</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white bg-success border-success"
+                           id="balance-tab" 
+                           data-toggle="tab" 
+                           href="#balance"
+                           role="tab" 
+                           aria-controls="balance" 
+                           aria-selected="false">Balance</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="container border border-primary tab-pane fade show active"
+                 id="digitize"
+                 role="tabpanel" 
+                 aria-labelledby="digitize-tab"
+                 style="padding-bottom: 15px">
+
+                <div class="row bg-primary text-white text-sm-center " style="padding-top: 5px">
+                    <div class="col-12">
+                        <h3>Convert loose change into crypto tokens</h3>
+                    </div>
+                </div>
+                <form id="digitize-form">
+                    <div class="row">
+                        <div class="col form-group">
+                            <div id="qr" class="btn btn-warning text-white">Scan QR</div>
+                            <label for="ethereumAddress">Or Type In Receiver Address</label>
+                            <input id="ethereumAddress" type="text" class="form-control" placeholder="Reciever eth address">
+                        </div>
+                        <div class="col form-group">
+                            <label for="rate">Rate (AUD to 1 DTZ)</label>
+                            <input id="rate" type="number" min="0" step="0.00001" disabled class="form-control" placeholder="Current rate">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col form-group">
+                            <label for="changeAmount">Amount of change (AUD)</label>
+                            <input id="changeAmount" type="number" max="200.0" min="0.01" step="0.01" class="form-control" placeholder="Amount of change to be converted">
+                        </div>
+                        <div class="col form-group">
+                            <label for="tokenAmount">Amount of tokens (DTZ)</label>
+                            <input id="tokenAmount" type="number" min="0" step="0.00001" disabled class="form-control" placeholder="DTZ amount">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block text-white">Digitize!</button>
+                </form>
+            </div>
+        
+            <div class="container border border-success tab-pane fade "
+                 id="balance" 
+                 role="tabpanel" 
+                 aria-labelledby="balance-tab"
+                 style="padding-bottom: 15px">
+        
+                <div class="row bg-success text-white text-sm-center " style="padding-top: 5px">
+                    <div class="col-12">
+                        <h3>Check balance of DTZ</h3>
+                    </div>
+                </div>
+                <form id="balance-form">
+                    <div class="row">
+                        <div class="col form-group">
+                            <label for="address">Address</label>
+                            <input id="address" type="text" class="form-control" placeholder="Eth address">
+                        </div>
+                        <div class="col form-group">
+                            <label for="tokenBalance">Amount of tokens (DTZ)</label>
+                            <input id="tokenBalance" type="number" min="0" step="0.00001" disabled class="form-control" placeholder="DTZ amount">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block text-white">Check</button>
+                </form>
+            </div>
+
+    </div>
+</body>
+</html>
